@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create SEO-friendly blog posts, product descriptions and social content with an AI-powered writing assistant.">
+  <title>WriteWise AI | Content & SEO Writer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-icon">W</span> WriteWise <span class="ai">AI</span></a>
+    <span class="top-note">AI-powered content studio</span>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <div class="eyebrow">WRITE SMARTER · RANK BETTER</div>
+      <h1>Turn your ideas into<br><span>search-ready content.</span></h1>
+      <p>Generate useful content, shape your brand voice, and check essential on-page SEO signals in one simple workspace.</p>
+      <div class="feature-row">
+        <span>✦ AI writing</span><span>◎ SEO checklist</span><span>↗ Export-ready</span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <form id="writer-form" class="panel">
+        <div class="panel-heading">
+          <div><div class="eyebrow">CONTENT BRIEF</div><h2>What are we writing today?</h2></div>
+          <span class="step">01 / 02</span>
+        </div>
+        <label for="topic">Topic or content idea <b>*</b></label>
+        <textarea id="topic" required maxlength="300" placeholder="Example: 7 practical ways students can improve their time management"></textarea>
+
+        <div class="form-grid">
+          <div>
+            <label for="content_type">Content type</label>
+            <select id="content_type">
+              <option>Blog post</option><option>Product description</option>
+              <option>Website landing page</option><option>Social media post</option>
+              <option>Email newsletter</option>
+            </select>
+          </div>
+          <div>
+            <label for="tone">Writing tone</label>
+            <select id="tone">
+              <option>Professional</option><option>Friendly</option><option>Conversational</option>
+              <option>Persuasive</option><option>Informative</option>
+            </select>
+          </div>
+          <div>
+            <label for="language">Language</label>
+            <select id="language"><option>English</option><option>Telugu</option><option>English and Telugu</option></select>
+          </div>
+          <div>
+            <label for="length">Content length</label>
+            <select id="length"><option>Short (250–400 words)</option><option selected>Medium (600–900 words)</option><option>Long (1000–1500 words)</option></select>
+          </div>
+        </div>
+        <label for="keywords">Target SEO keywords <span class="optional">(comma separated)</span></label>
+        <input id="keywords" type="text" placeholder="student time management, study tips, productivity">
+        <label for="audience">Target audience</label>
+        <input id="audience" type="text" placeholder="College students, beginners, business owners...">
+        <button class="primary" id="generate-btn" type="submit"><span>✦</span> Generate content <span>→</span></button>
+        <p class="privacy-note">Your API key stays on the server. Do not add it to frontend code or commit it to GitHub.</p>
+      </form>
+
+      <section class="panel output-panel">
+        <div class="panel-heading">
+          <div><div class="eyebrow">YOUR CONTENT</div><h2>Generated result</h2></div>
+          <span class="step">02 / 02</span>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">✎</div><h3>Your next great idea starts here</h3>
+          <p>Fill in the content brief and select Generate. Your draft and SEO checklist will appear here.</p>
+        </div>
+        <div id="loading" class="loading hidden"><div class="spinner"></div><strong>Creating your content…</strong><span>Reviewing your brief and writing a first draft.</span></div>
+        <div id="error" class="error hidden"></div>
+        <div id="result" class="hidden">
+          <div class="result-actions">
+            <span class="result-label">AI DRAFT</span>
+            <div><button type="button" class="small-btn" id="copy-btn">Copy</button><button type="button" class="small-btn" id="download-btn">Download .md</button></div>
+          </div>
+          <pre id="content-output" class="content-output"></pre>
+          <div class="seo-card">
+            <div class="seo-top"><div><div class="eyebrow">ON-PAGE SEO CHECK</div><h3>SEO readiness</h3></div><div class="score"><strong id="score-number">0</strong><span>/100</span></div></div>
+            <div class="progress"><div id="progress-fill"></div></div>
+            <p id="word-count" class="word-count"></p>
+            <ul id="seo-checks" class="checks"></ul>
+            <p class="disclaimer">This is a basic checklist, not a guarantee of search ranking. Review facts, originality, and search intent before publishing.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+    <footer>WriteWise AI · Student portfolio project · Built with Python, Flask and OpenAI API</footer>
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
